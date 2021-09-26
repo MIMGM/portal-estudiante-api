@@ -65,4 +65,9 @@ class AuthController extends Controller
 
     return response()->json($respuesta);
     }
+
+    public function logout(){ 
+        Auth::user()->tokens()->delete();
+        return response()->json(['mensaje' => 'Usuario desconectado']);
+    }
 }
