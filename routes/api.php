@@ -8,7 +8,7 @@ use App\Http\Controllers\AuthController;
 
 //rutas publicas
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/registre', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
    
 //rutas protegidas
 Route::middleware(['auth:sanctum'])->group(function() { 

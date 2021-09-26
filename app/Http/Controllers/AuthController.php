@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
+
+//////////////////LOGIN ////////////////
 {
     public function login(Request $request)
     { 
@@ -37,13 +39,14 @@ class AuthController extends Controller
         return  response()->json(['error'=>'Unauthorised', 401]);
     }   
  }
+////////////////REGISTRO///////////////////////
     public function register(Request $request) { 
     // validamos los datos
     $credentials = $request->validate([ 
         'name' => 'required',
-        'email' => 'required',
+        'email' => 'required|email',
         'password' => 'required',
-        'confirm_password' => 'required',
+        'confirm_password' => 'required|same:password',
     ]);
 
     //Encriptamos el password
@@ -65,6 +68,7 @@ class AuthController extends Controller
 
     return response()->json($respuesta);
     }
+
 
     public function logout(){ 
         Auth::user()->tokens()->delete();
